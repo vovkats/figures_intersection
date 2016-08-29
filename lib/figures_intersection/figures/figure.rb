@@ -1,20 +1,22 @@
-class Figure
-  MethodValidateError = Class.new(StandardError)
-  ValidateError = Class.new(StandardError)
+module FiguresIntersection
+  class Figure
+    MethodValidateError = Class.new(StandardError)
+    ValidateError = Class.new(StandardError)
 
-  def initialize
-    raise ValidateError, error_message unless valid?
-  end
+    def initialize
+      raise ValidateError, error_message unless valid?
+    end
 
-  private
+    private
 
-  def valid?
-    raise MethodValidateError, 'Need to implement method valid?'
-  end
+    def valid?
+      raise MethodValidateError, 'Need to implement method valid?'
+    end
 
-  private
+    private
 
-  def error_message
-    ''
+    def error_message
+      ''
+    end
   end
 end
