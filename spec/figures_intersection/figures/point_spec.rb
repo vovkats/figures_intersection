@@ -1,18 +1,19 @@
-require_relative '../spec_helper'
+require_relative '../../spec_helper'
 
-
-describe Point do
-
+describe FiguresIntersection::Point do
   context 'when parameters is wrong' do
     it 'raises exception Figure::ValidateError' do
-      expect { described_class.new(x: 'wrong', y: 'wrong')
-        }.to raise_error(Figure::ValidateError, 'Parameters should be numeric for Point')
+      expect do
+        described_class.new(x: 'wrong', y: 'wrong')
+      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for Point')
 
-      expect { described_class.new(x: 1, y: 'wrong')
-        }.to raise_error(Figure::ValidateError, 'Parameters should be numeric for Point')
+      expect do
+        described_class.new(x: 1, y: 'wrong')
+      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for Point')
 
-      expect { described_class.new(x: 'wrong', y: 1)
-      }.to raise_error(Figure::ValidateError, 'Parameters should be numeric for Point')
+      expect do
+        described_class.new(x: 'wrong', y: 1)
+      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for Point')
     end
   end
 
@@ -22,7 +23,7 @@ describe Point do
     end
 
     it 'returns false when points are not equal' do
-      expect(described_class.new(x: 2, y: 3)).to_not eq(described_class.new(x: 3, y: 2))
+      expect(described_class.new(x: 2, y: 3)).not_to eq(described_class.new(x: 3, y: 2))
     end
   end
 

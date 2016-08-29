@@ -1,24 +1,26 @@
-class VerticalLine < Figure
-  include VerticalLineIntersector
+module FiguresIntersection
+  class VerticalLine < BaseFigure
+    include FiguresIntersection::VerticalLineIntersector
 
-  attr_reader :a
+    attr_reader :a
 
-  def initialize(a:)
-    @a = a
-    super()
-  end
+    def initialize(a:)
+      @a = a
+      super()
+    end
 
-  def ==(vertical_line)
-    a == vertical_line
-  end
+    def ==(vertical_line)
+      a == vertical_line
+    end
 
-  private
+    private
 
-  def valid?
-    a.is_a?(Numeric)
-  end
+    def valid?
+      a.is_a?(Numeric)
+    end
 
-  def error_message
-    'Parameters should be numeric for VerticalLine'
+    def error_message
+      'Parameters should be numeric for VerticalLine'
+    end
   end
 end

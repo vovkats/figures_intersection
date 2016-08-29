@@ -1,12 +1,11 @@
-require_relative '../spec_helper'
+require_relative '../../spec_helper'
 
-
-describe VerticalLine do
-
+describe FiguresIntersection::VerticalLine do
   context 'when parameters is wrong' do
     it 'raises exception Figure::ValidateError' do
-      expect { described_class.new(a: 'wrong')
-      }.to raise_error(Figure::ValidateError, 'Parameters should be numeric for VerticalLine')
+      expect do
+        described_class.new(a: 'wrong')
+      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for VerticalLine')
     end
   end
 
@@ -16,7 +15,7 @@ describe VerticalLine do
     end
 
     it 'returns false when vertical lines are not equal' do
-      expect(described_class.new(a: 2)).to_not eq(described_class.new(a: 3))
+      expect(described_class.new(a: 2)).not_to eq(described_class.new(a: 3))
     end
   end
 
