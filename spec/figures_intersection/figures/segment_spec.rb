@@ -5,11 +5,15 @@ describe FiguresIntersection::Segment do
     it 'raises exception Figure::ValidateError' do
       expect do
         described_class.new(x: 'wrong', y: 'wrong', x1: 1, y1: 1)
-      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for Segment')
+      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for Segment and not to equal')
 
       expect do
         described_class.new(x: 1, y: 'wrong', x1: 2, y1: 1)
-      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for Segment')
+      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for Segment and not to equal')
+
+      expect do
+        described_class.new(x: 1, y: 1, x1: 1, y1: 1)
+      end.to raise_error(FiguresIntersection::BaseFigure::ValidateError, 'Parameters should be numeric for Segment and not to equal')
     end
   end
 

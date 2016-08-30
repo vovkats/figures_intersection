@@ -46,11 +46,12 @@ module FiguresIntersection
     private
 
     def valid?
-      x.is_a?(Numeric) && y.is_a?(Numeric) && x1.is_a?(Numeric) && y1.is_a?(Numeric)
+      x.is_a?(Numeric) && y.is_a?(Numeric) && x1.is_a?(Numeric) && y1.is_a?(Numeric) &&
+        ((x != x1) || (y != y1))
     end
 
     def error_message
-      'Parameters should be numeric for Segment'
+      'Parameters should be numeric for Segment and not to equal'
     end
 
     def range_x?(point)
