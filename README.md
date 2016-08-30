@@ -1,38 +1,92 @@
 # FiguresIntersection
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/figures_intersection`. To experiment with that code, run `bin/console` for an interactive prompt.
+Purpose of this gem is finding of intersection different figures.
 
-TODO: Delete this and the text above, and describe your gem
+Available Figures
+* Point
+* Straight Line y = k*x+b
+* Vertical line x = a
+* Segment (need to set coords of ends)
+* Rectangle (given the coordinates of its two diagonally opposite vertices)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'figures_intersection'
+gem 'figures_intersection', git: 'git@github.com:vovkats/figures_intersection.git'
 ```
 
 And then execute:
 
     $ bundle
 
-Or install it yourself as:
+then require gem: 
 
-    $ gem install figures_intersection
+```ruby
+require 'figures_intersection'
+```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Available figures
 
-## Development
+```ruby
+  FiguresIntersection::Point
+```
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```ruby
+  FiguresIntersection::Rectangle
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+```ruby
+  FiguresIntersection::Segment
+```
+
+```ruby
+  FiguresIntersection::StraightLine
+```
+
+```ruby
+  FiguresIntersection::VerticalLine
+```
+    
+### Example
+
+####Create new Figure
+```ruby
+  # Create point (1, 2)
+  FiguresIntersection::Point.new(x: 1, y: 2)
+  # Create Rectangle. Need to set diagonal coordinates
+  FiguresIntersection::Rectangle.new(x: 1, y: 1, x1: 5, y1: 6)
+  # Create segment 
+  FiguresIntersection::Segment.new(x: 1, y: 2, x1: 5, y1: 6)
+  # Create Straight Line y = 2x - 1
+  FiguresIntersection::StraightLine.new(k: 2, b: -1)
+  # Create vertical Line with a = 2
+  FiguresIntersection::VerticalLine.new(a: 2)
+```
+
+#### Find Intersection
+
+For finding intersection need to call "intersect" method on figure and pass another figure as parameter 
+```ruby
+  # Intersection Point with other Point
+  FiguresIntersection::Point.new(x: 1, y: 2).intersect(FiguresIntersection::Point.new(x: 1, y: 2))
+  # => #<FiguresIntersection::Point:0x00556a51f9b350 @x=1, @y=2>
+  
+  # When figures have not intersection
+  FiguresIntersection::Point.new(x: 1, y: 2).intersect(FiguresIntersection::Point.new(x: 1, y: 1))
+  # => []
+  
+  # Intersection Rectanle with Segment
+  FiguresIntersection::Rectangle.new(x: 1, y: 1, x1: 5, y1: 6).intersect(FiguresIntersection::Segment.new(x: 1, y: 1, x1: 3, y1: 3))
+  # => #<FiguresIntersection::Segment:0x00556a5200d4a0 @x=1.0, @y=1.0, @x1=3, @y1=3>
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/figures_intersection.
+Bug reports and pull requests are welcome on GitHub at https://github.com/vovkats/figures_intersection.
 
 
 ## License
